@@ -12,6 +12,8 @@ for /f "delims=" %%f in ('dir /a-d-h-s /b /s %dSource%') do (
     call :epoch %%~tf
     if !epoch! LEQ %slice% (echo DELETE %%f ^(%%~tf^)) ELSE echo keep %%f ^(%%~tf^)
 )
+
+ROBOCOPY D:\DL D:\DL /S /MOVE
 exit /b 0
 
 rem Args[1]: Year-Month-Day
@@ -27,6 +29,7 @@ rem Args[1]: Year-Month-Day
     set /a Years=(Years-1970)*year
     set /a Epoch=Years+Months+Days
     endlocal& set Epoch=%Epoch%
-	ROBOCOPY D:\DL D:\DL /S /MOVE
     exit /b 0
+	
+	
 	
